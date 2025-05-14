@@ -1,0 +1,20 @@
+{
+  "name": "vendor_name/kinolook",
+  "description": "The Home Catalog Cinema",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "alexSaM",
+      "email": "alsam3637@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}
