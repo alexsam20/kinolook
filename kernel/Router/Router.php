@@ -11,25 +11,39 @@ class Router
 
     public function __construct()
     {
-        $routes = $this->initRoutes();
+        $this->initRoutes();
     }
 
 
-    public function dispatch(string $uri)
+    public function dispatch(string $uri, string $method): void
     {
-        $routes = $this->getRoutes();
+        $route = $this->findRoute($uri, $method);
 
-        $routes[$uri]();
+        if (!$route) {
+            $this->notFound();
+        }
+
+        $route->getAction()();
     }
 
-    private function initRoutes()
+    private function notFound(): void
+    {
+        echo '404 | Not Found';
+        exit();
+    }
+
+    private function findRoute(string $uri, string $method): Route|false
+    {
+        return $this->routes[$method][$uri] ?? false;
+    }
+
+    private function initRoutes(): void
     {
         $routes = $this->getRoutes();
 
         foreach ($routes as $route) {
             $this->routes[$route->getMethod()][$route->getUri()] = $route;
         }
-//        dd($this->routes);
     }
 
     /**
