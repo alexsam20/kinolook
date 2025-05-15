@@ -12,7 +12,7 @@ class View
         $viewPath = APP_PATH."/views/pages/$name.php";
 
         if (! file_exists($viewPath)) {
-            throw new ViewNotFoundException("View $viewPath does not exist");
+            throw new ViewNotFoundException("View $name does not exist");
         }
 
         extract(['view' => $this]);
@@ -22,6 +22,13 @@ class View
 
     public function component(string $name): void
     {
-        include_once APP_PATH."/views/components/$name.php";
+        $componentPath = APP_PATH."/views/components/$name.php";
+
+        if (! file_exists($componentPath)) {
+            echo "Component $name does not exist";
+            return;
+        }
+
+        include_once $componentPath;
     }
 }
