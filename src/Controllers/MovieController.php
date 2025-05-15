@@ -9,6 +9,6 @@ class MovieController extends Controller
 {
     public function index(): void
     {
-        $this->view('movies');
+        $this->view('movie');
     }
 }
