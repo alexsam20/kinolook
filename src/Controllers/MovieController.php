@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Kernel\Controllers;
+namespace App\Controllers;
 
 class MovieController
 {

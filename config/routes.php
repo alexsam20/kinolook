@@ -1,7 +1,7 @@
 <?php
 
-use App\Kernel\Controllers\HomeController;
-use App\Kernel\Controllers\MovieController;
+use App\Controllers\HomeController;
+use App\Controllers\MovieController;
 use App\Kernel\Router\Route;
 
 return [
