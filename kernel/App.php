@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Kernel;
+namespace Kernel;
 
-use App\Kernel\Container\Container;
+use Kernel\Container\Container;
 
 class App
 {

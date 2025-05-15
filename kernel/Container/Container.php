@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Kernel\Container;
+namespace Kernel\Container;
 
-use App\Kernel\Http\Request;
-use App\Kernel\Router\Router;
-use App\Kernel\View\View;
+use Kernel\Http\Request;
+use Kernel\Router\Router;
+use Kernel\View\View;
 
 class Container
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Kernel\Router;
+namespace Kernel\Router;
 
-use App\Kernel\Controller\Controller;
-use App\Kernel\View\View;
+use Kernel\Controller\Controller;
+use Kernel\View\View;
 
 class Router
 {
