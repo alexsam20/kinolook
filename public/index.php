@@ -1,7 +1,12 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+define('APP_PATH', dirname(__DIR__));
 
-$a = 'Hello World!';
+require_once APP_PATH.'/vendor/autoload.php';
 
-dump($a);
+use App\Kernel\App;
+
+$app = new App();
+$app->run();
+
+
