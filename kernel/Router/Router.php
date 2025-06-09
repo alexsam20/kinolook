@@ -3,10 +3,10 @@
 namespace Kernel\Router;
 
 use Kernel\Controller\Controller;
-use Kernel\Http\Redirect;
-use Kernel\Http\Request;
-use Kernel\Session\Session;
-use Kernel\View\View;
+use Kernel\Http\RedirectInterface;
+use Kernel\Http\RequestInterface;
+use Kernel\Session\SessionInterface;
+use Kernel\View\ViewInterface;
 
 class Router implements RouterInterface
 {
@@ -16,10 +16,10 @@ class Router implements RouterInterface
     ];
 
     public function __construct(
-        private View $view,
-        private Request $request,
-        private Redirect $redirect,
-        private Session $session,
+        private ViewInterface $view,
+        private RequestInterface $request,
+        private RedirectInterface $redirect,
+        private SessionInterface $session,
     ) {
         $this->initRoutes();
     }
