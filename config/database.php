@@ -7,6 +7,5 @@ return [
     'database' => 'kinolook',
     'username' => 'alex',
     'password' => '',
-    /*'charset' => 'utf8',*/
-    'charset' => 'utf8mb4_general_ci',
+    'charset' => 'utf8',
 ];

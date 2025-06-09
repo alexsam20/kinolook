@@ -2,6 +2,10 @@
 
 namespace Kernel\Container;
 
+use Kernel\Config\Config;
+use Kernel\Config\ConfigInterface;
+use Kernel\Database\Database;
+use Kernel\Database\DatabaseInterface;
 use Kernel\Http\Redirect;
 use Kernel\Http\RedirectInterface;
 use Kernel\Http\Request;
@@ -28,6 +32,10 @@ readonly class Container
 
     public SessionInterface $session;
 
+    public ConfigInterface $config;
+
+    public DatabaseInterface $database;
+
     public function __construct()
     {
         $this->registerServices();
@@ -42,5 +50,7 @@ readonly class Container
         $this->session = new Session();
         $this->view = new View($this->session);
         $this->router = new Router($this->view, $this->request, $this->redirect, $this->session);
+        $this->config = new Config();
+        $this->database = new Database($this->config);
     }
 }
