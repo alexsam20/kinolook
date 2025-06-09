@@ -20,6 +20,8 @@ class MovieController extends Controller
 
     public function store()
     {
+//        dd($this->session());
+
         $validation = $this->request()->validate([
             'name' => ['required', 'min:3', 'max:255'],
         ]);
