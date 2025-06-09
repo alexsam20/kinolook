@@ -2,8 +2,12 @@
 
 namespace Kernel\Http;
 
+use Kernel\Validator\Validator;
+
 readonly class Request
 {
+    private Validator $validator;
+
     public function __construct(
         public array $get,
         public array $post,
@@ -30,5 +34,25 @@ readonly class Request
     public function input(string $key, $default = null)
     {
         return $this->post[$key] ?? $this->get[$key] ?? $default;
+    }
+
+    public function setValidator(Validator $validator): void
+    {
+        $this->validator = $validator;
+    }
+
+    public function validate(array $rules): bool
+    {
+        $data = [];
+        foreach ($rules as $field => $rule) {
+            $data[$field]  = $this->input($field);
+        }
+
+        return $this->validator->validate($data, $rules);
+    }
+
+    public function errors(): array
+    {
+        return $this->validator->errors();
     }
 }
