@@ -2,7 +2,9 @@
 
 namespace Kernel\Exception;
 
-class ViewNotFoundException extends \Exception
+use Exception;
+
+class ViewNotFoundException extends Exception
 {
 
 }

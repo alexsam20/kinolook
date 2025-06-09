@@ -2,6 +2,7 @@
 
 namespace Kernel\Router;
 
+use JetBrains\PhpStorm\NoReturn;
 use Kernel\Controller\Controller;
 use Kernel\Database\DatabaseInterface;
 use Kernel\Http\RedirectInterface;
@@ -17,11 +18,11 @@ class Router implements RouterInterface
     ];
 
     public function __construct(
-        private ViewInterface $view,
-        private RequestInterface $request,
-        private RedirectInterface $redirect,
-        private SessionInterface $session,
-        private DatabaseInterface $database
+        private readonly ViewInterface     $view,
+        private readonly RequestInterface  $request,
+        private readonly RedirectInterface $redirect,
+        private readonly SessionInterface  $session,
+        private readonly DatabaseInterface $database
     ) {
         $this->initRoutes();
     }
@@ -40,19 +41,20 @@ class Router implements RouterInterface
             /** @var Controller $controller */
             $controller = new $controller;
 
-            call_user_func([$controller, 'setView'], $this->view);
-            call_user_func([$controller, 'setRequest'], $this->request);
-            call_user_func([$controller, 'setRedirect'], $this->redirect);
-            call_user_func([$controller, 'setSession'], $this->session);
-            call_user_func([$controller, 'setDatabase'], $this->database);
+            $controller->setView($this->view);
+            $controller->setRequest($this->request);
+            $controller->setRedirect($this->redirect);
+            $controller->setSession($this->session);
+            $controller->setDatabase($this->database);
 
-            call_user_func([$controller, $action]);
+            $controller->$action();
         } else {
             call_user_func($route->getAction());
         }
 
     }
 
+    #[NoReturn]
     private function notFound(): void
     {
         echo '404 | Not Found';

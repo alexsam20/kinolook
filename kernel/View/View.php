@@ -5,13 +5,16 @@ namespace Kernel\View;
 use Kernel\Exception\ViewNotFoundException;
 use Kernel\Session\SessionInterface;
 
-class View implements ViewInterface
+readonly class View implements ViewInterface
 {
-    public function __construct(private readonly SessionInterface $session)
+    public function __construct(private SessionInterface $session)
     {
         
     }
-    
+
+    /**
+     * @throws ViewNotFoundException
+     */
     public function page(string $name): void
     {
 

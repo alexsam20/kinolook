@@ -14,13 +14,13 @@ class Validator implements ValidatorInterface
         $this->data = $data;
 
         foreach ($rules as $key => $rule) {
-            $rules = $rule;
+            $regulations = $rule;
 
-            foreach ($rules as $rule) {
-                $rule = explode(':', $rule);
+            foreach ($regulations as $regulation) {
+                $regulation = explode(':', $regulation);
 
-                $ruleName = $rule[0];
-                $ruleValue = $rule[1] ?? null;
+                $ruleName = $regulation[0];
+                $ruleValue = $regulation[1] ?? null;
 
                 $error = $this->validateRule($key, $ruleName, $ruleValue);
 

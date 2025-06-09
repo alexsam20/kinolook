@@ -3,10 +3,12 @@
 namespace Kernel\Database;
 
 use Kernel\Config\ConfigInterface;
+use PDO;
+use PDOException;
 
 class Database implements DatabaseInterface
 {
-    private \PDO $pdo;
+    private PDO $pdo;
 
     public function __construct(private readonly ConfigInterface $config)
     {
@@ -18,7 +20,7 @@ class Database implements DatabaseInterface
         $fields = array_keys($data);
 
         $columns = implode(', ', $fields);
-        $binds = implode(', ', array_map(fn ($field) => ":$field", $fields));
+        $binds = implode(', ', array_map(static fn ($field) => ":$field", $fields));
 
         $sql = "INSERT INTO $table ($columns) VALUES ($binds)";
 
@@ -26,7 +28,7 @@ class Database implements DatabaseInterface
 
         try {
             $stmt->execute($data);
-        } catch (\PDOException $exception) {
+        } catch (PDOException $exception) {
             return false;
         }
 
@@ -44,12 +46,12 @@ class Database implements DatabaseInterface
         $charset = $this->config->get('database.charset');
 
         try {
-            $this->pdo = new \PDO(
+            $this->pdo = new PDO(
                 "$driver:host=$host;port=$port;dbname=$database;charset=$charset",
                 $username,
                 $password
             );
-        } catch (\PDOException $exception) {
+        } catch (PDOException $exception) {
             exit("Database connection failed: {$exception->getMessage()}");
         }
     }

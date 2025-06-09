@@ -3,8 +3,6 @@
 namespace App\Controllers;
 
 use Kernel\Controller\Controller;
-use Kernel\Http\Redirect;
-use Kernel\Validator\Validator;
 
 class MovieController extends Controller
 {
@@ -18,7 +16,7 @@ class MovieController extends Controller
         $this->view('admin/movies/add');
     }
 
-    public function store()
+    public function store(): void
     {
         $validation = $this->request()->validate([
             'name' => ['required', 'min:3', 'max:255'],

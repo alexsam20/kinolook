@@ -5,9 +5,9 @@ namespace Kernel\Router;
 class Route
 {
     public function __construct(
-        private string $uri,
-        private string $method,
-        private $action
+        private readonly string $uri,
+        private readonly string $method,
+        private                 $action
     ) {}
 
     public static function get(string $uri, $action): static

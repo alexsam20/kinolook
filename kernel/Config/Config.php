@@ -2,8 +2,6 @@
 
 namespace Kernel\Config;
 
-use Kernel\Config\ConfigInterface;
-
 class Config implements ConfigInterface
 {
 
