@@ -2,14 +2,14 @@
 
 namespace Kernel\Http;
 
-class Request
+readonly class Request
 {
     public function __construct(
-        public readonly array $get,
-        public readonly array $post,
-        public readonly array $server,
-        public readonly array $files,
-        public readonly array $cookies
+        public array $get,
+        public array $post,
+        public array $server,
+        public array $files,
+        public array $cookies
     ) {}
 
     public static function createFromGlobals(): static
@@ -25,5 +25,10 @@ class Request
     public function method(): string
     {
         return $this->server['REQUEST_METHOD'];
+    }
+
+    public function input(string $key, $default = null)
+    {
+        return $this->post[$key] ?? $this->get[$key] ?? $default;
     }
 }

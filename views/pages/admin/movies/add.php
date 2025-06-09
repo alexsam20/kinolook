@@ -4,7 +4,7 @@
 
 <form method="post" action="/admin/movies/add" enctype="multipart/form-data">
     <p>Name</p>
-    <div><input type="text" name="movie_name"></input></div>
+    <div><input type="text" name="name" /></div>
     <div><button>Add</button></div>
 </form>
 <?php $view->component('end'); ?>
