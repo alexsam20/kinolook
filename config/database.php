@@ -6,6 +6,6 @@ return [
     'port' => 3306,
     'database' => 'kinolook',
     'username' => 'alex',
-    'password' => '',
+    'password' => 'alex1970MD3214',
     'charset' => 'utf8',
 ];
