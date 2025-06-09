@@ -4,7 +4,7 @@ namespace Kernel\Http;
 
 use Kernel\Validator\Validator;
 
-readonly class Request
+readonly class Request implements RequestInterface
 {
     private Validator $validator;
 
@@ -31,7 +31,7 @@ readonly class Request
         return $this->server['REQUEST_METHOD'];
     }
 
-    public function input(string $key, $default = null)
+    public function input(string $key, $default = null): mixed
     {
         return $this->post[$key] ?? $this->get[$key] ?? $default;
     }

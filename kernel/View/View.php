@@ -5,7 +5,7 @@ namespace Kernel\View;
 use Kernel\Exception\ViewNotFoundException;
 use Kernel\Session\Session;
 
-class View
+class View implements ViewInterface
 {
     public function __construct(private readonly Session $session)
     {

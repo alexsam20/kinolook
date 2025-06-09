@@ -2,7 +2,7 @@
 
 namespace Kernel\Validator;
 
-class Validator
+class Validator implements ValidatorInterface
 {
     private array $errors = [];
 
