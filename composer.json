@@ -1,25 +1,25 @@
 {
-  "name": "alsam3637/kinolook",
-  "description": "The Home Cinema Catalog",
-  "minimum-stability": "stable",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "alexSaM",
-      "email": "alsam3637@gmail.com"
+    "name": "alsam3637/kinolook",
+    "description": "The Home Cinema Catalog",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "alexSaM",
+            "email": "alsam3637@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Kernel\\": "kernel/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^7.2",
+        "laravel/pint": "^1.22"
     }
-  ],
-  "require": {
-    "php": "^8.4"
-  },
-  "autoload": {
-    "psr-4": {
-      "App\\": "src/",
-      "Kernel\\": "kernel/"
-    }
-  },
-  "require-dev": {
-    "symfony/var-dumper": "^7.2",
-    "laravel/pint": "^1.22"
-  }
 }

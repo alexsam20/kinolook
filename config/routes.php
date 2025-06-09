@@ -7,5 +7,6 @@ use Kernel\Router\Route;
 return [
     Route::get('/home', [HomeController::class, 'index']),
     Route::get('/movies', [MovieController::class, 'index']),
-    Route::get('/admin/movies/add', [MovieController::class, 'addMovie']),
+    Route::get('/admin/movies/add', [MovieController::class, 'add']),
+    Route::post('/admin/movies/add', [MovieController::class, 'store']),
 ];
