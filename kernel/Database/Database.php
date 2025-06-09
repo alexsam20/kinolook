@@ -2,13 +2,13 @@
 
 namespace Kernel\Database;
 
-use Kernel\Database\DatabaseInterface;
+use Kernel\Config\ConfigInterface;
 
 class Database implements DatabaseInterface
 {
     private \PDO $pdo;
 
-    public function __construct()
+    public function __construct(private readonly ConfigInterface $config)
     {
         $this->connect();
     }
@@ -20,13 +20,7 @@ class Database implements DatabaseInterface
 
     private function connect(): void
     {
-        $this->pdo = new \PDO(
-            'mysql:host=localhost;port=3306;dbname=kinolook;charset=utf8mb4_general_ci',
-            'alex',
-            ''
-        );
-
-        /*$driver = $this->config->get('database.driver');
+        $driver = $this->config->get('database.driver');
         $host = $this->config->get('database.host');
         $port = $this->config->get('database.port');
         $database = $this->config->get('database.database');
@@ -42,6 +36,6 @@ class Database implements DatabaseInterface
             );
         } catch (\PDOException $exception) {
             exit("Database connection failed: {$exception->getMessage()}");
-        }*/
+        }
     }
 }
