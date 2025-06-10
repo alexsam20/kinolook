@@ -10,4 +10,31 @@ class RegisterController extends Controller
     {
         $this->view(name: 'register');
     }
+
+    public function register()
+    {
+        $validation = $this->request()->validate([
+            /*'name' => ['required', 'max:255'],*/
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:8', /*'confirmed'*/],
+            /*'password_confirmation' => ['required', 'min:8'],*/
+        ]);
+
+        if (! $validation) {
+            foreach ($this->request()->errors() as $field => $errors) {
+                $this->session()->set($field, $errors);
+            }
+
+            $this->redirect('/register');
+        }
+
+        $userId = $this->db()->insert('users', [
+            'email' => $this->request()->input('email'),
+            'password' => password_hash($this->request()->input('password'), PASSWORD_DEFAULT),
+        ]);
+
+        dd('User created with ID ' . $userId);
+
+        $this->redirect('/');
+    }
 }

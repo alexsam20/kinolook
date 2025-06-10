@@ -26,6 +26,8 @@ class Database implements DatabaseInterface
 
         $stmt = $this->pdo->prepare($sql);
 
+//        dd($stmt);
+
         try {
             $stmt->execute($data);
         } catch (PDOException $exception) {
