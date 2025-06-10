@@ -2,14 +2,17 @@
 
 namespace Kernel\View;
 
+use Kernel\Auth\AuthInterface;
 use Kernel\Exception\ViewNotFoundException;
 use Kernel\Session\SessionInterface;
 
 readonly class View implements ViewInterface
 {
-    public function __construct(private SessionInterface $session)
+    public function __construct(
+        private SessionInterface $session,
+        private AuthInterface $auth
+    )
     {
-        
     }
 
     /**
@@ -38,6 +41,8 @@ readonly class View implements ViewInterface
             return;
         }
 
+        extract($this->defaultData());
+
         include_once $componentPath;
     }
 
@@ -46,6 +51,7 @@ readonly class View implements ViewInterface
         return [
             'view' => $this,
             'session' => $this->session,
+            'auth' => $this->auth,
         ];
     }
 }
