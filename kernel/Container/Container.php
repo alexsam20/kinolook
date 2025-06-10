@@ -2,6 +2,8 @@
 
 namespace Kernel\Container;
 
+use Kernel\Auth\Auth;
+use Kernel\Auth\AuthInterface;
 use Kernel\Config\Config;
 use Kernel\Config\ConfigInterface;
 use Kernel\Database\Database;
@@ -36,6 +38,8 @@ readonly class Container
 
     public DatabaseInterface $database;
 
+    public AuthInterface $auth;
+
     public function __construct()
     {
         $this->registerServices();
@@ -51,6 +55,14 @@ readonly class Container
         $this->view = new View($this->session);
         $this->config = new Config();
         $this->database = new Database($this->config);
-        $this->router = new Router($this->view, $this->request, $this->redirect, $this->session, $this->database);
+        $this->auth = new Auth($this->database, $this->session);
+        $this->router = new Router(
+            $this->view,
+            $this->request,
+            $this->redirect,
+            $this->session,
+            $this->database,
+            $this->auth
+        );
     }
 }

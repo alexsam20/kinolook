@@ -13,7 +13,8 @@ class LoginController extends Controller
 
     public function login(): void
     {
-        $email = $this->request()->input('email');
+        dd($this->auth());
+        /*$email = $this->request()->input('email');
         $password = $this->request()->input('password');
 
         if ($this->auth()->attempt($email, $password)) {
@@ -22,7 +23,7 @@ class LoginController extends Controller
 
         $this->session()->set('error', 'Неверный логин или пароль');
 
-        $this->redirect('/login');
+        $this->redirect('/login');*/
     }
 
     /*public function logout(): void

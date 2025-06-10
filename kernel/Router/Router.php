@@ -3,6 +3,7 @@
 namespace Kernel\Router;
 
 use JetBrains\PhpStorm\NoReturn;
+use Kernel\Auth\AuthInterface;
 use Kernel\Controller\Controller;
 use Kernel\Database\DatabaseInterface;
 use Kernel\Http\RedirectInterface;
@@ -22,7 +23,8 @@ class Router implements RouterInterface
         private readonly RequestInterface  $request,
         private readonly RedirectInterface $redirect,
         private readonly SessionInterface  $session,
-        private readonly DatabaseInterface $database
+        private readonly DatabaseInterface $database,
+        private readonly AuthInterface     $auth
     ) {
         $this->initRoutes();
     }
@@ -46,6 +48,7 @@ class Router implements RouterInterface
             $controller->setRedirect($this->redirect);
             $controller->setSession($this->session);
             $controller->setDatabase($this->database);
+            $controller->setAuth($this->auth);
 
             $controller->$action();
         } else {

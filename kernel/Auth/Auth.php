@@ -2,7 +2,8 @@
 
 namespace Kernel\Auth;
 
-use Kernel\Auth\AuthInterface;
+use Kernel\Database\DatabaseInterface;
+use Kernel\Session\SessionInterface;
 
 class Auth implements AuthInterface
 {
