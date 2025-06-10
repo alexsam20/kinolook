@@ -41,7 +41,7 @@ class Route
         return !empty($this->middleware);
     }
 
-    public function getMiddleware(): array
+    public function getMiddlewares(): array
     {
         return $this->middleware;
     }

@@ -8,6 +8,7 @@ use Kernel\Controller\Controller;
 use Kernel\Database\DatabaseInterface;
 use Kernel\Http\RedirectInterface;
 use Kernel\Http\RequestInterface;
+use Kernel\Middleware\AbstractMiddleware;
 use Kernel\Session\SessionInterface;
 use Kernel\View\ViewInterface;
 
@@ -35,6 +36,15 @@ class Router implements RouterInterface
 
         if (! $route) {
             $this->notFound();
+        }
+
+        if ($route->hasMiddleware()) {
+            foreach ($route->getMiddlewares() as $middleware) {
+                /** @var AbstractMiddleware $middleware */
+                $middleware = new $middleware($this->request, $this->auth, $this->redirect);
+
+                $middleware->handle();
+            }
         }
 
         if (is_array($route->getAction())) {
