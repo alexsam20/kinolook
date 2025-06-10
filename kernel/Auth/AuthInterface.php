@@ -12,13 +12,13 @@ interface AuthInterface
 
     public function user(): ?array;
 
-    /*public function id(): ?int;
-
     public function table(): string;
 
     public function username(): string;
 
     public function password(): string;
 
-    public function sessionField(): string;*/
+    public function sessionField(): string;
+
+    /*public function id(): ?int;*/
 }
