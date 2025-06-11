@@ -40,7 +40,7 @@ class Database implements DatabaseInterface
         $where = '';
 
         if (count($conditions) > 0) {
-            $where = 'WHERE '.implode(' AND ', array_map(fn ($field) => "$field = :$field", array_keys($conditions)));
+            $where = 'WHERE '.implode(' AND ', array_map(static fn ($field) => "$field = :$field", array_keys($conditions)));
         }
 
         $sql = "SELECT * FROM $table $where LIMIT 1";
@@ -49,7 +49,7 @@ class Database implements DatabaseInterface
 
         $stmt->execute($conditions);
 
-        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $result = $stmt->fetch();
 
         return $result ?: null;
     }

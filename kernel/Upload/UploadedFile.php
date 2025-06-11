@@ -2,16 +2,16 @@
 
 namespace Kernel\Upload;
 
-use Kernel\Upload\UploadedFileInterface;
+use RuntimeException;
 
-class UploadedFile implements UploadedFileInterface
+readonly class UploadedFile implements UploadedFileInterface
 {
     public function __construct(
-        public readonly string $name,
-        public readonly string $type,
-        public readonly string $tmpName,
-        public readonly int $error,
-        public readonly int $size,
+        public string $name,
+        public string $type,
+        public string $tmpName,
+        public int    $error,
+        public int    $size,
     ) {
     }
 
@@ -19,10 +19,12 @@ class UploadedFile implements UploadedFileInterface
     {
         $storagePath = APP_PATH . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR . $path;
 
-        if (!is_dir($storagePath)) {
-            if (!mkdir($storagePath, 0777, true) && !is_dir($storagePath)) {
-                throw new \RuntimeException(sprintf('Directory "%s" was not created', $storagePath));
-            }
+        if (
+               !is_dir($storagePath)
+            && !mkdir($storagePath, 0777, true)
+            && !is_dir($storagePath)
+        ) {
+            throw new RuntimeException(sprintf('Directory "%s" was not created', $storagePath));
         }
 
         $fileName = $fileName ?? basename($this->randomFileName());

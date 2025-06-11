@@ -2,8 +2,6 @@
 
 namespace Kernel\Middleware;
 
-use Kernel\Middleware\MiddlewareInterface;
-
 class Middleware implements MiddlewareInterface
 {
 

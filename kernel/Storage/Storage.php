@@ -3,9 +3,8 @@
 namespace Kernel\Storage;
 
 use Kernel\Config\ConfigInterface;
-use Kernel\Storage\StorageInterface;
 
-class Storage implements StorageInterface
+readonly class Storage implements StorageInterface
 {
     public function __construct(
         private ConfigInterface $config,

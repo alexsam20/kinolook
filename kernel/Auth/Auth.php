@@ -6,12 +6,12 @@ use Kernel\Config\ConfigInterface;
 use Kernel\Database\DatabaseInterface;
 use Kernel\Session\SessionInterface;
 
-class Auth implements AuthInterface
+readonly class Auth implements AuthInterface
 {
     public function __construct(
-        private readonly DatabaseInterface $db,
-        private readonly SessionInterface  $session,
-        private readonly ConfigInterface   $config
+        private DatabaseInterface $db,
+        private SessionInterface  $session,
+        private ConfigInterface   $config
     )
     {
     }

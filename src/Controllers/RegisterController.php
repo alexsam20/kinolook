@@ -11,7 +11,7 @@ class RegisterController extends Controller
         $this->view(name: 'register');
     }
 
-    public function register()
+    public function register(): void
     {
         $validation = $this->request()->validate([
             /*'name' => ['required', 'max:255'],*/
