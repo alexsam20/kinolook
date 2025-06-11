@@ -29,7 +29,7 @@ class UploadedFile implements UploadedFileInterface
         $filePath = $storagePath . DIRECTORY_SEPARATOR . $fileName;
 
         if (move_uploaded_file($this->tmpName, $filePath)) {
-            return 'storage' . DIRECTORY_SEPARATOR . $path . DIRECTORY_SEPARATOR . $fileName;
+            return $path . DIRECTORY_SEPARATOR . $fileName;
         }
 
         return false;
