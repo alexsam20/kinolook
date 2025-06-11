@@ -13,6 +13,7 @@
             <?php endforeach; ?>
         </ul>
     <?php endif; ?>
+    <div><input type="file" name="image" /></div>
     <div><button>Add</button></div>
 </form>
 <?php $view->component('end'); ?>
