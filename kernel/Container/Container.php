@@ -16,6 +16,8 @@ use Kernel\Router\Router;
 use Kernel\Router\RouterInterface;
 use Kernel\Session\Session;
 use Kernel\Session\SessionInterface;
+use Kernel\Storage\Storage;
+use Kernel\Storage\StorageInterface;
 use Kernel\Validator\Validator;
 use Kernel\Validator\ValidatorInterface;
 use Kernel\View\View;
@@ -40,6 +42,8 @@ readonly class Container
 
     public AuthInterface $auth;
 
+    public StorageInterface $storage;
+
     public function __construct()
     {
         $this->registerServices();
@@ -56,13 +60,15 @@ readonly class Container
         $this->database = new Database($this->config);
         $this->auth = new Auth($this->database, $this->session, $this->config);
         $this->view = new View($this->session, $this->auth);
+        $this->storage = new Storage($this->config);
         $this->router = new Router(
             $this->view,
             $this->request,
             $this->redirect,
             $this->session,
             $this->database,
-            $this->auth
+            $this->auth,
+            $this->storage,
         );
     }
 }

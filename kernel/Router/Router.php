@@ -10,6 +10,7 @@ use Kernel\Http\RedirectInterface;
 use Kernel\Http\RequestInterface;
 use Kernel\Middleware\AbstractMiddleware;
 use Kernel\Session\SessionInterface;
+use Kernel\Storage\StorageInterface;
 use Kernel\View\ViewInterface;
 
 class Router implements RouterInterface
@@ -25,7 +26,8 @@ class Router implements RouterInterface
         private readonly RedirectInterface $redirect,
         private readonly SessionInterface  $session,
         private readonly DatabaseInterface $database,
-        private readonly AuthInterface     $auth
+        private readonly AuthInterface     $auth,
+        private readonly StorageInterface  $storage,
     ) {
         $this->initRoutes();
     }
@@ -59,6 +61,7 @@ class Router implements RouterInterface
             $controller->setSession($this->session);
             $controller->setDatabase($this->database);
             $controller->setAuth($this->auth);
+            $controller->setStorage($this->storage);
 
             $controller->$action();
         } else {

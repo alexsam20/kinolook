@@ -2,14 +2,21 @@
 
 namespace Kernel\Storage;
 
+use Kernel\Config\ConfigInterface;
 use Kernel\Storage\StorageInterface;
 
 class Storage implements StorageInterface
 {
+    public function __construct(
+        private ConfigInterface $config,
+    ) {
+    }
 
     public function url(string $path): string
     {
-        return 'http://127.0.0.1:8000/storage/' . $path;
+        $url = $this->config->get('app.url', 'http://127.0.0.1:8000');
+
+        return $url . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR .  $path;
     }
 
     public function get(string $path): string
@@ -19,6 +26,6 @@ class Storage implements StorageInterface
 
     private function storagePath(string $path): string
     {
-        return APP_PATH."/storage/$path";
+        return APP_PATH. DIRECTORY_SEPARATOR . 'storage' .  DIRECTORY_SEPARATOR . $path;
     }
 }
