@@ -2,6 +2,8 @@
 
 namespace Kernel\Http;
 
+use Kernel\Upload\UploadedFile;
+use Kernel\Upload\UploadedFileInterface;
 use Kernel\Validator\ValidatorInterface;
 
 readonly class Request implements RequestInterface
@@ -36,9 +38,19 @@ readonly class Request implements RequestInterface
         return $this->post[$key] ?? $this->get[$key] ?? $default;
     }
 
-    public function file(string $key): ?array
+    public function file(string $key): ?UploadedFileInterface
     {
-        return $this->files[$key] ?? null;
+        if (!isset($this->files[$key])) {
+            return null;
+        }
+
+        return new UploadedFile(
+            $this->files[$key]['name'],
+            $this->files[$key]['type'],
+            $this->files[$key]['tmp_name'],
+            $this->files[$key]['error'],
+            $this->files[$key]['size'],
+        );
     }
 
     public function setValidator(ValidatorInterface $validator): void
