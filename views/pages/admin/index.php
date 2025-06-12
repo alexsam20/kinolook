@@ -1,11 +1,10 @@
 <?php
 /**
- * @var \App\Kernel\View\ViewInterface $view
+ * @var \Kernel\View\ViewInterface $view
  * @var array<\App\Models\Category> $categories
- * @var array<\App\Models\Movie> $movies
+// * @var array<\App\Models\Movie> $movies
  */
 ?>
-
 <?php $view->component('start'); ?>
 
 <main>
@@ -32,9 +31,9 @@
             </thead>
             <tbody>
             <?php
-                foreach ($movies as $movie) {
+                /*foreach ($movies as $movie) {
                     $view->component('admin/movie', ['movie' => $movie]);
-                }
+                }*/
 ?>
             </tbody>
         </table>
@@ -59,10 +58,10 @@
             </thead>
             <tbody>
             <?php
-    foreach ($categories as $category) {
-        $view->component('admin/category', ['category' => $category]);
-    }
-?>
+                foreach ($categories as $category) {
+                    $view->component('admin/category', ['category' => $category]);
+                }
+            ?>
             </tbody>
         </table>
     </div>

@@ -18,7 +18,7 @@ readonly class View implements ViewInterface
     /**
      * @throws ViewNotFoundException
      */
-    public function page(string $name): void
+    public function page(string $name, array $data = []): void
     {
 
         $viewPath = APP_PATH."/views/pages/$name.php";
@@ -27,12 +27,12 @@ readonly class View implements ViewInterface
             throw new ViewNotFoundException("View $name does not exist");
         }
 
-        extract($this->defaultData());
+        extract(array_merge($this->defaultData(), $data));
 
         include_once $viewPath;
     }
 
-    public function component(string $name): void
+    public function component(string $name, array $data = []): void
     {
         $componentPath = APP_PATH."/views/components/$name.php";
 
@@ -41,9 +41,9 @@ readonly class View implements ViewInterface
             return;
         }
 
-        extract($this->defaultData());
+        extract(array_merge($this->defaultData(), $data));
 
-        include_once $componentPath;
+        include $componentPath;
     }
 
     private function defaultData(): array
