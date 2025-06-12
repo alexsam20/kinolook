@@ -3,7 +3,6 @@
  * @var \Kernel\View\ViewInterface $view
  */
 ?>
-
 <!doctype html>
 <html lang="ru" data-bs-theme="dark">
 <?php $view->component('head'); ?>
