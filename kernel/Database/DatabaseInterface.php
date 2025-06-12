@@ -10,7 +10,7 @@ interface DatabaseInterface
 
     public function get(string $table, array $conditions = []/*, array $order = [], int $limit = -1*/): array;
 
-    /*public function delete(string $table, array $conditions = []): void;
+    public function delete(string $table, array $conditions = []): void;
 
-    public function update(string $table, array $data, array $conditions = []): void;*/
+    /*public function update(string $table, array $data, array $conditions = []): void;*/
 }

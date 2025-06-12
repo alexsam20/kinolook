@@ -29,4 +29,18 @@ readonly class CategoryService
             );
         }, $categories);
     }
+
+    public function store(string $name): int
+    {
+        return $this->db->insert('categories', [
+            'name' => $name,
+        ]);
+    }
+
+    public function delete(int $id): void
+    {
+        $this->db->delete('categories', [
+            'id' => $id,
+        ]);
+    }
 }
