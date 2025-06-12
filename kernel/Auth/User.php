@@ -6,6 +6,7 @@ readonly class User
 {
     public function __construct(
         private int    $id,
+        private string $name,
         private string $email,
         private string $password,
     ) {
@@ -26,8 +27,8 @@ readonly class User
         return $this->password;
     }
 
-    /*public function name(): string
+    public function name(): string
     {
         return $this->name;
-    }*/
+    }
 }

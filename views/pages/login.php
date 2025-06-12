@@ -7,7 +7,7 @@
 
 <?php $view->component('start_simple'); ?>
 
-<main class="form-signin w-100 m-auto">
+<main class="form-signin w-100 m-auto text-white">
     <form action="/login" method="post">
             <?php if ($session->has('error')) { ?>
                 <div class="alert alert-danger">
@@ -23,7 +23,7 @@
             <div class="form-floating mt-3">
                 <input
                     type="email"
-                    class="form-control"
+                    class="form-control text-white bg-dark"
                     name="email"
                     id="floatingInput"
                     placeholder="name@areaweb.su"
@@ -34,14 +34,14 @@
                 <input
                     type="password"
                     name="password"
-                    class="form-control"
+                    class="form-control text-white bg-dark"
                     id="floatingPassword"
                     placeholder="Пароль"
                 >
                 <label for="floatingPassword">Пароль</label>
             </div>
             <button class="btn btn-primary w-100 py-2" type="submit">Войти</button>
-            <p class="mt-5 mb-3 text-body-secondary">&copy; Кинопоиск Lite 2023</p>
+            <p class="mt-5 mb-3">&copy; Кинопоиск Lite 2023</p>
         </form>
     </main>
 
