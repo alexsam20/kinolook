@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\AdminController;
 use App\Controllers\HomeController;
 use App\Controllers\LoginController;
 use App\Controllers\MovieController;
@@ -18,4 +19,5 @@ return [
     Route::get('/movies', [MovieController::class, 'index']),
     Route::get('/admin/movies/add', [MovieController::class, 'add'], [AuthMiddleware::class]),
     Route::post('/admin/movies/add', [MovieController::class, 'store']),
+    Route::get('/admin', [AdminController::class, 'index']),
 ];
