@@ -9,7 +9,7 @@
     <td>
         <div class="dropdown d-flex justify-content-end">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Action </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" data-bs-theme="dark">
                 <li>
                     <a class="dropdown-item" href="/admin/categories/update?id=<?php echo $category->id() ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
