@@ -47,4 +47,42 @@ readonly class MovieService
             'id' => $id,
         ]);
     }
+
+    public function find(int $id): ?Movie
+    {
+        $movie = $this->db->first('movies', [
+            'id' => $id,
+        ]);
+
+        if (!$movie) {
+            return null;
+        }
+
+        return new Movie(
+            $movie['id'],
+            $movie['name'],
+            $movie['description'],
+            $movie['preview'],
+            $movie['category_id'],
+            $movie['created_at'],
+        /*$this->getReviews($id)*/
+        );
+    }
+
+    public function update(int $id, string $name, string $description, ?UploadedFileInterface $image, int $category): void
+    {
+        $data = [
+            'name' => $name,
+            'description' => $description,
+            'category_id' => $category,
+        ];
+
+        if ($image && !$image->hasError()) {
+            $data['preview'] = $image->move('movies');
+        }
+
+        $this->db->update('movies', $data, [
+            'id' => $id,
+        ]);
+    }
 }
