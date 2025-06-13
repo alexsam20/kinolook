@@ -55,7 +55,7 @@ class Database implements DatabaseInterface
         return $result ?: null;
     }
 
-    public function get(string $table, array $conditions = []/*, array $order = []*/): array
+    public function get(string $table, array $conditions = [], array $order = [], int $limit = -1): array
     {
         $where = '';
 
@@ -65,19 +65,19 @@ class Database implements DatabaseInterface
 
         $sql = "SELECT * FROM $table $where";
 
-        /*if (count($order) > 0) {
+        if (count($order) > 0) {
             $sql .= ' ORDER BY '.implode(', ', array_map(static fn ($field, $direction) => "$field $direction", array_keys($order), $order));
-        }*/
+        }
 
-        /*if ($limit > 0) {
+        if ($limit > 0) {
             $sql .= " LIMIT $limit";
-        }*/
+        }
 
         $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute($conditions);
 
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function update(string $table, array $data, array $conditions = []): void
