@@ -25,7 +25,7 @@
                                     name="rating"
                                     aria-label="Default select example"
                                 >
-                                    <option selected>Оценка</option>
+                                    <option selected>Ratings</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -50,32 +50,32 @@
                                         id="floatingTextarea2"
                                         style="height: 100px"
                                     ></textarea>
-                                    <label for="floatingTextarea2">Комментарий</label>
+                                    <label for="floatingTextarea2">Comment</label>
                                     <?php if ($session->has('comment')) { ?>
                                         <div id="name" class="invalid-feedback">
                                             <?php echo $session->getFlash('comment')[0] ?>
                                         </div>
                                     <?php } ?>
                                 </div>
-                                <button class="btn btn-primary mt-2">Оставить отзыв</button>
+                                <button class="btn btn-primary mt-2">Send</button>
                             </form>
                         <?php else: ?>
                             <div class="alert alert-warning m-3 w-100">
-                                Для того, чтобы оставить отзыв, необходимо <a href="/login">авторизоваться</a>
+                                For send message your need <a href="/login">authorization</a>
                             </div>
                         <?php endif; ?>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h1 class="card-title"><?php echo $movie->name() ?></h1>
-                            <p class="card-text">Оценка <span class="badge bg-warning warn__badge"><?php // echo $movie->avgRating() ?></span></p>
+                            <p class="card-text">Rating <span class="badge bg-warning warn__badge"><?php  echo $movie->avgRating() ?></span></p>
                             <p class="card-text"><?php echo $movie->description() ?></p>
-                            <p class="card-text"><small class="text-body-secondary">Добавлен <?php echo $movie->createdAt() ?></small></p>
-                            <h4>Отзывы</h4>
+                            <p class="card-text"><small class="text-body-secondary">Added <?php echo $movie->createdAt() ?></small></p>
+                            <h4>Reviews</h4>
                             <div class="one-movie__reviews">
-                                <?php //foreach ($movie->reviews() as $review) { ?>
-                                    <?php //$view->component('review_card', ['review' => $review]) ?>
-                                <?php //} ?>
+                                <?php foreach ($movie->reviews() as $review): ?>
+                                    <?php $view->component('review_card', ['review' => $review]) ?>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>

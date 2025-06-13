@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Movie;
+use App\Models\Review;
+use Kernel\Auth\User;
 use Kernel\Database\DatabaseInterface;
 use Kernel\Upload\UploadedFileInterface;
 
@@ -65,7 +67,7 @@ readonly class MovieService
             $movie['preview'],
             $movie['category_id'],
             $movie['created_at'],
-        /*$this->getReviews($id)*/
+            $this->getReviews($id)
         );
     }
 
@@ -90,7 +92,7 @@ readonly class MovieService
     {
         $movies = $this->db->get('movies', [], ['id' => 'DESC'], 10);
 
-        return array_map(static function ($movie) {
+        return array_map(function ($movie) {
             return new Movie(
                 $movie['id'],
                 $movie['name'],
@@ -98,8 +100,34 @@ readonly class MovieService
                 $movie['preview'],
                 $movie['category_id'],
                 $movie['created_at'],
-                //$this->getReviews($movie['id']) // FIXME: в данном случае это лишнее
+                $this->getReviews($movie['id']) // FIXME: в данном случае это лишнее
             );
         }, $movies);
+    }
+
+    private function getReviews(int $id): array
+    {
+        $reviews = $this->db->get('reviews', [
+            'movie_id' => $id,
+        ]);
+
+        return array_map(function ($review) {
+            $user = $this->db->first('users', [
+                'id' => $review['user_id'],
+            ]);
+
+            return new Review(
+                $review['id'],
+                $review['rating'],
+                $review['review'],
+                $review['created_at'],
+                new User(
+                    $user['id'],
+                    $user['name'],
+                    $user['email'],
+                    $user['password'],
+                )
+            );
+        }, $reviews);
     }
 }

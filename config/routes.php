@@ -6,6 +6,7 @@ use App\Controllers\HomeController;
 use App\Controllers\LoginController;
 use App\Controllers\MovieController;
 use App\Controllers\RegisterController;
+use App\Controllers\ReviewController;
 use App\Middleware\GuestMiddleware;
 use Kernel\Router\Route;
 use App\Middleware\AuthMiddleware;
@@ -17,7 +18,6 @@ return [
     Route::get('/login', [LoginController::class, 'index'], [GuestMiddleware::class]),
     Route::post('/login', [LoginController::class, 'login']),
     Route::post('/logout', [LoginController::class, 'logout']),
-    /*Route::get('/movies', [MovieController::class, 'index']),*/
     Route::get('/admin/movies/add', [MovieController::class, 'add'], [AuthMiddleware::class]),
     Route::get('/admin', [AdminController::class, 'index']),
     Route::get('/admin/categories/add', [CategoryController::class, 'create']),
@@ -31,4 +31,6 @@ return [
     Route::get('/admin/movies/update', [MovieController::class, 'edit']),
     Route::post('/admin/movies/update', [MovieController::class, 'update']),
     Route::get('/movie', [MovieController::class, 'show']),
+    Route::post('/reviews/add', [ReviewController::class, 'store']),
+    Route::get('/categories', [CategoryController::class, 'index']),
 ];

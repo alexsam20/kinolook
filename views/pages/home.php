@@ -8,7 +8,7 @@
 
 <?php $view->component('start'); ?>
 
-<main class="text-white">
+<main class="text-white" data-bs-theme="dark">
     <div class="container">
         <h3 class="mt-3">Новинки</h3>
         <hr>
