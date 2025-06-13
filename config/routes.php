@@ -17,7 +17,7 @@ return [
     Route::get('/login', [LoginController::class, 'index'], [GuestMiddleware::class]),
     Route::post('/login', [LoginController::class, 'login']),
     Route::post('/logout', [LoginController::class, 'logout']),
-    Route::get('/movies', [MovieController::class, 'index']),
+    /*Route::get('/movies', [MovieController::class, 'index']),*/
     Route::get('/admin/movies/add', [MovieController::class, 'add'], [AuthMiddleware::class]),
     Route::get('/admin', [AdminController::class, 'index']),
     Route::get('/admin/categories/add', [CategoryController::class, 'create']),
@@ -30,4 +30,5 @@ return [
     Route::post('/admin/movies/destroy', [MovieController::class, 'destroy']),
     Route::get('/admin/movies/update', [MovieController::class, 'edit']),
     Route::post('/admin/movies/update', [MovieController::class, 'update']),
+    Route::get('/movie', [MovieController::class, 'show']),
 ];
