@@ -29,6 +29,7 @@ class Database implements DatabaseInterface
         try {
             $stmt->execute($data);
         } catch (PDOException $exception) {
+            echo $exception->getMessage();
             return false;
         }
 
@@ -83,12 +84,12 @@ class Database implements DatabaseInterface
     {
         $fields = array_keys($data);
 
-        $set = implode(', ', array_map(fn ($field) => "$field = :$field", $fields));
+        $set = implode(', ', array_map(static fn ($field) => "$field = :$field", $fields));
 
         $where = '';
 
         if (count($conditions) > 0) {
-            $where = 'WHERE '.implode(' AND ', array_map(fn ($field) => "$field = :$field", array_keys($conditions)));
+            $where = 'WHERE '.implode(' AND ', array_map(static fn ($field) => "$field = :$field", array_keys($conditions)));
         }
 
         $sql = "UPDATE $table SET $set $where";
