@@ -99,7 +99,7 @@ class MovieController extends Controller
 
         $this->view('movie', [
             'movie' => $movie,
-        ], "Фильм - {$movie->name()}");
+        ], "Movie - {$movie->name()}");
     }
 
     private function service(): MovieService

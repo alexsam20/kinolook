@@ -8,7 +8,7 @@ class RegisterController extends Controller
 {
     public function index(): void
     {
-        $this->view(name: 'register');
+        $this->view(name: 'register', title: 'Register');
     }
 
     public function register(): void

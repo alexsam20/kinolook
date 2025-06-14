@@ -9,6 +9,8 @@ use Kernel\Storage\StorageInterface;
 
 readonly class View implements ViewInterface
 {
+    private string $title;
+
     public function __construct(
         private SessionInterface $session,
         private AuthInterface $auth,
@@ -20,8 +22,9 @@ readonly class View implements ViewInterface
     /**
      * @throws ViewNotFoundException
      */
-    public function page(string $name, array $data = []): void
+    public function page(string $name, array $data = [], string $title = ''): void
     {
+        $this->title = $title;
 
         $viewPath = APP_PATH."/views/pages/$name.php";
 
@@ -56,5 +59,10 @@ readonly class View implements ViewInterface
             'auth' => $this->auth,
             'storage' => $this->storage,
         ];
+    }
+
+    public function title(): string
+    {
+        return $this->title;
     }
 }
