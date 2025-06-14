@@ -9,6 +9,13 @@ class CategoryController extends Controller
 {
     private CategoryService $service;
 
+    public function index(): void
+    {
+        $this->view('categories', [
+            'categories' => $this->service()->all(),
+        ]);
+    }
+
     public function create(): void
     {
         $this->view('admin/categories/add');
@@ -73,7 +80,7 @@ class CategoryController extends Controller
 
     public function service(): CategoryService
     {
-        if (! isset($this->service)) {
+        if (!isset($this->service)) {
             $this->service = new CategoryService($this->db());
         }
 
